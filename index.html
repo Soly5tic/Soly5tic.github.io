@@ -96,49 +96,15 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
         <p>给个简单做法，不用 Lucas 定理，不用生成函数！</p>
-<!-- more>
-
-考虑到异或满足相同抵消为 $0$，这是一个和模 $2$ 计数相似的性质，提示我们寻找双射。
-
-不难发现对于一个序列 $(X_1,X_2,\cdots,X_K)$，如果它不是一个回文序列，则可以直接将其双射到它反过来的序列 $(X_K,X_{K-1},\cdots,X_1)$，两者的 $\sum A_{X_i}$ 显然是一样的，于是相互抵消。
-
-于是我们只需要对回文的 $X$ 序列求 $\sum A_{X_i}$ 的异或和即可。
-
-此时，如果 $K$ 是偶数，则将序列从中间折半，必有前后两半的 $\sum A_{X_i}$ 相等。于是可以直接将 $K$ 除以 $2$ 之后递归做。具体来说，设 $f_i$ 为 $K=i$ 时的答案，则我们有 $f_{2i}=2f_{i}$。
-
-然而如果 $K$ 是奇数就不能直接折半了，因为最后整体的和要加上中间的一项。
-
-于是一个很自然的想法就是把整体加的这一项记下来。发现这样就可以完成所有计算：
-
-- 对于 $K$ 是奇数的情况，可以直接枚举中间的项是什么，然后把它加到整体加的项里面，即可转化为 $K$ 是偶数的情况。
-- 对于 $K$ 是偶数的情况，最后一位的值只和整体加的量，以及折半以后可能的序列个数有关。前者已经被记录，后者只和 $N\bmod 2$ 有关，于是可以计算出最后一位；剩下的位就是折半后整体加当前的整体加的量的二分之一下取整的值。（这一部分可以结合下面的转移式理解）
-
-于是我们就得到了最终的做法：
-
-设 $f(i,j)$ 表示：对所有长度为 $i$ 的序列 $(X_1,X_2,\cdots,X_i)$，$j+\sum_{k=1}^i A_{X_k}$ 的异或和。
-
-对于偶数 $i=2x$，有：
-
-- $f(2x,j)=2f(x,\lfloor\frac{j}{2}\rfloor)+(Nj\bmod 2)$。
-
-对于奇数 $i=2x+1$，有：
-
-- $f(2x+1,j)=\bigoplus_{p=1}^N\big(2f(x,\lfloor\frac{j+A_p}{2}\rfloor)+(N(j+A_p)\bmod 2)\big)$。
-
-边界状态：
-
-- $f(1,j)=\bigoplus_{p=1}^N(A_p+j)$。
-
-目标状态为 $f(K,0)$。
-
-归纳易证第二维的最大值就是序列 $A$ 的最大值，而第一维显然只有 $\log K$ 个。转移再乘上一个 $N$，总复杂度即为 $O(N\log K\cdot \max A)$。
-
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, a[<span class="number">1005</span>];</span><br><span class="line"><span class="type">long</span> <span class="type">long</span> k, dp[<span class="number">77</span>][<span class="number">1005</span>];</span><br><span class="line"><span class="type">bool</span> vis[<span class="number">77</span>][<span class="number">1005</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">Read</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; k;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>;i &lt;= n;i++) cin &gt;&gt; a[i];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">long</span> <span class="type">long</span> <span class="title">Dfs</span><span class="params">(<span class="type">int</span> dep, <span class="type">int</span> pls)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (vis[dep][pls]) <span class="keyword">return</span> dp[dep][pls];</span><br><span class="line">    <span class="keyword">if</span> ((k &gt;&gt; dep) == <span class="number">1</span>) &#123;</span><br><span class="line">        vis[dep][pls] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>;i &lt;= n;i++) dp[dep][pls] ^= (a[i] + pls);</span><br><span class="line">        <span class="keyword">return</span> dp[dep][pls];</span><br><span class="line">    &#125;</span><br><span class="line">    vis[dep][pls] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (!((k &gt;&gt; dep) &amp; <span class="number">1</span>)) <span class="keyword">return</span> dp[dep][pls] = (<span class="built_in">Dfs</span>(dep + <span class="number">1</span>, pls &gt;&gt; <span class="number">1</span>) &lt;&lt; <span class="number">1</span>) | ((pls &amp; <span class="number">1</span>) &amp;&amp; (n &amp; <span class="number">1</span>));</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        dp[dep][pls] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>;i &lt;= n;i++) dp[dep][pls] ^= (<span class="built_in">Dfs</span>(dep + <span class="number">1</span>, (pls + a[i]) &gt;&gt; <span class="number">1</span>) &lt;&lt; <span class="number">1</span>) | (((pls + a[i]) &amp; <span class="number">1</span>) &amp;&amp; (n &amp; <span class="number">1</span>));</span><br><span class="line">        <span class="keyword">return</span> dp[dep][pls];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">Read</span>();</span><br><span class="line">    cout &lt;&lt; <span class="built_in">Dfs</span>(<span class="number">0</span>, <span class="number">0</span>) &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+        
+          <p class="article-more-link">
+            <a href="/2024/01/19/solution-arc156d/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://soly5tic.github.io/2024/01/19/solution-arc156d/" data-id="clrkd0kx900000kvh0an1hz5w" data-title="ARC156D 题解" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://soly5tic.github.io/2024/01/19/solution-arc156d/" data-id="clrkd4zyw00005gvh04k29mac" data-title="ARC156D 题解" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -193,7 +159,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://soly5tic.github.io/2024/01/19/test/" data-id="clrkd0kxe00010kvh49h687nr" data-title="test markdown and latex" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://soly5tic.github.io/2024/01/19/test/" data-id="clrkd4zz100015gvh6aml6qls" data-title="test markdown and latex" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
