@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>一些常见套路 | Sol 1</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="我做题比较少，这里只放了我见过的，欢迎补充。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一些常见套路">
+<meta property="og:url" content="http://soly5tic.github.io/2020/11/15/common-tricks/index.html">
+<meta property="og:site_name" content="Sol 1">
+<meta property="og:description" content="我做题比较少，这里只放了我见过的，欢迎补充。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-11-14T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-01-19T12:08:39.835Z">
+<meta property="article:author" content="Sol 1">
+<meta property="article:tag" content="总结">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Sol 1" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Sol 1</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://soly5tic.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-common-tricks" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/11/15/common-tricks/" class="article-date">
+  <time class="dt-published" datetime="2020-11-14T16:00:00.000Z" itemprop="datePublished">2020-11-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      一些常见套路
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>我做题比较少，这里只放了我见过的，欢迎补充。</p>
+<span id="more"></span>
+<h2 id="随便收集的一些杂项"><a class="markdownIt-Anchor" href="#随便收集的一些杂项"></a> 随便收集的一些杂项</h2>
+<ol>
+<li>二分：</li>
+</ol>
+<ul>
+<li>maximize minimum 或者 minimize maximum 优先考虑二分</li>
+<li>二分性，答案取值范围的一段前缀/后缀合法，或者有单调性</li>
+</ul>
+<ol start="2">
+<li>计数 DP：</li>
+</ol>
+<ul>
+<li>考虑所谓的“不可划分的整体”，围绕这个整体划分子问题<br />
+- 例如 CF888F，就是将两个直接相连的点中间的所有点作为整体</li>
+</ul>
+<ol start="3">
+<li>前面对后面有影响（即，正着做有后效性）？</li>
+</ol>
+<ul>
+<li>考虑倒着做</li>
+<li>例如 CSP-S 2020 T4，就是倒着考虑每一条蛇到目前的最终局面时是否还健在，如果是，则继续；否则，将目前最终局面改成它做决策时的局面</li>
+</ul>
+<ol start="4">
+<li>猜出了一个贪心策略？</li>
+</ol>
+<ul>
+<li>从最优性（是否可能存在一个更优的方案）和可行性（是否可以按照策略构造出一个最优方案）证明</li>
+</ul>
+<ol start="5">
+<li>相邻交换得到了一个含 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>max</mi><mo>⁡</mo><mi mathvariant="normal">/</mi><mi>min</mi><mo>⁡</mo></mrow><annotation encoding="application/x-tex">\max/\min</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">max</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">/</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">min</span></span></span></span> 的式子？</li>
+</ol>
+<ul>
+<li>分类讨论所有可能的大小关系，通过推导与/或关系来得到一个确定的全序关系</li>
+</ul>
+<ol start="6">
+<li>怎么搞都要 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">2^n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.664392em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span></span></span></span> 枚举子集？</li>
+</ol>
+<ul>
+<li>这个子集也许有性质，例如一定是连续区间</li>
+</ul>
+<ol start="7">
+<li>期望 dp？</li>
+</ol>
+<ul>
+<li>倒着设计状态和转移，已知推未知</li>
+</ul>
+<ol start="8">
+<li>所有子集的子集</li>
+</ol>
+<ul>
+<li>复杂度不是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mn>2</mn><mi>n</mi></msup><mo>×</mo><msup><mn>2</mn><mi>n</mi></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(2^n\times 2^n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>，是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mn>3</mn><mi>n</mi></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(3^n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord">3</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></li>
+</ul>
+<ol start="9">
+<li>kth 相关</li>
+</ol>
+<ul>
+<li>二分答案转换成 0/1 最大子段和等问题</li>
+</ul>
+<ol start="10">
+<li>中位数相关
+<ul>
+<li>二分答案转换成 -1/1 最大子段和等问题</li>
+</ul>
+</li>
+<li>图论题中有一个数非常小
+<ul>
+<li>考虑利用它拆点</li>
+</ul>
+</li>
+<li>对所有排列考虑 / 将原序列重排
+<ul>
+<li>原来的顺序没关系了，可以排序等等方式处理</li>
+</ul>
+</li>
+<li>V - E 容斥
+<ul>
+<li>对于每个点统计一遍贡献，再对每一个边统计一下贡献，两者相减后所有连通块的贡献只被算 1 次</li>
+<li>对于树上连通块交的相关计数很有用</li>
+</ul>
+</li>
+<li>重心只能在以根为链头的重链上</li>
+<li>两点集直径在两点集各自的直径的 4 个端点中取一对点，点集中距离一个点最远的点一定是点集的直径的两个端点之一。</li>
+<li>多个价值维度均合并为一项之后互相干涉并产生价值，可以把合并出的一项作为坐标建系，例如 P5540。</li>
+<li>“某些元素在某时刻消失”倒流变成“某些元素在某时刻出现”有时很关键。</li>
+<li>竞赛图缩点后是一条链</li>
+<li>不仅区间加/减可以考虑差分，矩形加/减也可以。</li>
+<li>子段和 → 整体 - 前缀 - 后缀（Topcoder 14719）</li>
+<li>后面覆盖前面 → 倒过来 → 只和第一次有关系</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">lcm</mi><mo>⁡</mo><mo stretchy="false">(</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo separator="true">,</mo><mn>3</mn><mo separator="true">,</mo><mo>⋯</mo><mtext> </mtext><mo separator="true">,</mo><mn>18</mn><mo stretchy="false">)</mo><mo>∼</mo><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><msup><mn>0</mn><mn>7</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\operatorname{lcm}(1,2,3,\cdots,18)\sim O(10^7)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span class="mord mathrm">l</span><span class="mord mathrm">c</span><span class="mord mathrm">m</span></span><span class="mopen">(</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mord">8</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∼</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">7</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>，遇到取模+类似数据范围可以考虑这个复杂度</li>
+<li>处理平方数的一种 hash：维护一个完全异或性函数，对于所有质数 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">p</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(p)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal">p</span><span class="mclose">)</span></span></span></span> 取任意值。</li>
+<li>数据范围大也可以考虑最大流，特殊图最大流不好求可以转特殊图最小割，有一些可以用数据结构维护。</li>
+<li>奇怪的不能 FMT/FWT 的卷积形式可以考虑类似 karatsuba 的方式做到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>3</mn><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">3^n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.664392em;vertical-align:0em;"></span><span class="mord"><span class="mord">3</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span></span></span></span>。</li>
+<li>和时间有关的游走问题考虑建时间轴。</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span> 次方求和可以转 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span> 个独立方案的组合</li>
+<li>根节点复制 k 份 -&gt; 孩子独立</li>
+<li>本质不同border形态数量是亚指数级别</li>
+<li>离线数子区间：枚举询问右端点，线段树维护每个点作为目前扫到的多少个子区间的左端点</li>
+<li>遇到 mex 的时候可以往二进制上想</li>
+<li>dfs 序背包：维护 dfs 序在当前点之前的信息，每次加入当前点信息并依次递归子树更新（EINOIP2022D1T4）</li>
+<li>静态区间查询只能往一个方向加东西的时候考虑对称性（UNR#6 D1T3）</li>
+</ol>
+<h2 id="构造"><a class="markdownIt-Anchor" href="#构造"></a> 构造</h2>
+<ol>
+<li>差分约束/拓扑排序/高斯消元（省选2021 d1t2，某个 gym 题，CF1635E）</li>
+<li>格雷码构造原理（某个洛谷月赛 C，某个联测 T1）</li>
+<li>打表找规律（P3599）</li>
+<li>观察/模拟样例（P5441，P8103）</li>
+<li>强化/转化限制（CF1641B 转化为排序，P8282 改为最优化一个东西）</li>
+<li>从特殊情况出发（CF1583F）</li>
+<li>增量法（完全图构造先红后蓝哈密顿路那个题）</li>
+</ol>
+<h2 id="猜结论性质"><a class="markdownIt-Anchor" href="#猜结论性质"></a> 猜结论/性质</h2>
+<ol>
+<li>交 换 差 分/前缀和</li>
+<li>max/min 单调栈 -&gt; 笛卡尔树，笛卡尔树上左链/右链一般比较有用</li>
+<li>猜决策单调性（artistic partition）</li>
+<li>调整/直觉（CF1442D 调整最后一个元素的位置 -&gt; 只有一个不顶到头）</li>
+<li>构造性的猜法（构造答案，部分依赖打表）</li>
+<li>最优化问题简化限制：
+<ol>
+<li>它不合法，但是它同时不优于至少一个合法解，直接算进来也行（很多，比较有代表性的是 NOIP2017 宝藏）</li>
+<li>分析最优性得到每一次选取的可能解集要么全部合法要么全部不合法，且可以快速判断（JOISC 2022 D2T3）</li>
+</ol>
+</li>
+</ol>
+<h2 id="贪心"><a class="markdownIt-Anchor" href="#贪心"></a> 贪心</h2>
+<p>参考 <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/8hnex65m">https://www.luogu.com.cn/paste/8hnex65m</a></p>
+<ol>
+<li>相邻交换
+<ul>
+<li>树上相邻交换：
+<ul>
+<li>先和序列上一样做。</li>
+<li>由于相邻交换本身的特性，其所针对的变换通常可以合并。</li>
+<li>如果儿子排在父亲前面，合并儿子和父亲。</li>
+<li>全部合并结束后按顺序选。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>超级钢琴：答案候选集合中选出最大，然后分裂集合</li>
+<li>反悔贪心（P2209）</li>
+<li>利用贪心想法简化问题形式（CF1632D，转化为序列切分然后 DP）</li>
+<li>限制/影响最小化的思想（CF1404C：删后面不影响前面 -&gt; 每时刻删最后一个；U202373：前面影响的限制更多 -&gt; 优先放后面）</li>
+<li>差分相关有一些需要把操作 2 个位置转化为 1 个，但是有时候也需要把操作 1 个位置转化为 2 个</li>
+<li>可能贪心找不到最优解，但是能用贪心把答案用一个很小的范围界住/把一个比较大的范围内的答案都确定为同一个值，然后用一些更暴力的东西（例如 dp）（某个联测 T2 的那个神秘 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>w</mi><mo>≤</mo><mn>300</mn><mo separator="true">,</mo><mi>v</mi><mo>=</mo><mn>1</mn><mo separator="true">,</mo><mi>C</mi><mo>=</mo><mn>1</mn><msup><mn>0</mn><mn>18</mn></msup></mrow><annotation encoding="application/x-tex">w\leq 300,v=1,C=10^{18}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">3</span><span class="mord">0</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">8</span></span></span></span></span></span></span></span></span></span></span></span> 多重背包）</li>
+</ol>
+<h2 id="ds"><a class="markdownIt-Anchor" href="#ds"></a> ds</h2>
+<ul>
+<li>segtree
+<ul>
+<li>线段树合并
+<ul>
+<li>优化树上 dp</li>
+<li>优化拓展域并查集（本质是重构树上 dp？）
+<ul>
+<li>离散化用来卡空间</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>扫描线的特殊性质</li>
+<li>O(nlogn) 线段树
+<ul>
+<li>大多用于静态问题
+<ul>
+<li>维护一些类似函数的东西</li>
+<li>e.g. CF1404C 维护常数分段函数，P5073、P4118 维护线性分段函数</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>优化线性 dp
+<ul>
+<li>大多题目是单点修改 dp 值 区间求 min/max 值，或者区间对某个值取 min/max 单点求值
+<ul>
+<li>P2605 区间加单点求值</li>
+<li>结合单调栈（CF1483C）（有时候可以简化操作，变为前缀/后缀取 max，复杂度不变但是常数和代码难度都会好很多）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>优化建图
+<ul>
+<li>P5284 SA 上优化建图</li>
+</ul>
+</li>
+<li>1log 区间线段树二分
+<ul>
+<li>按照一定的方向搜索 logn 个终止节点
+<ul>
+<li>如果节点中可以有答案就以它为根做整体的线段树二分，并直接返回</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>fenwick tree
+<ul>
+<li>点分治
+<ul>
+<li>多数是深度上前缀查询，所以可以做</li>
+</ul>
+</li>
+<li>树状数组上倍增
+<ul>
+<li>解决一些全局线段树二分的问题
+<ul>
+<li>常数有明显优势</li>
+<li>P6619</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>分块
+<ul>
+<li>根号平衡
+<ul>
+<li>O(sqrt)-O(1) 维护块上前缀和（群）/猫树（半群）</li>
+<li>O(1)-O(sqrt) 维护整块求和</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="网络流"><a class="markdownIt-Anchor" href="#网络流"></a> 网络流</h2>
+<ul>
+<li>观察数据范围
+<ul>
+<li>比较小（1000 以下）</li>
+<li>不知所云（2e4,3e4 这种）还有个数据随机</li>
+</ul>
+</li>
+<li>明显不能网络流
+<ul>
+<li>尝试建图之后发现需要一个大于 1 的流整体分到一条边里面</li>
+</ul>
+</li>
+<li>优化
+<ul>
+<li>单位流图 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>E</mi><msqrt><mi>V</mi></msqrt><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(E\sqrt V)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.176665em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9266650000000001em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;padding-left:0.833em;">V</span></span><span style="top:-2.886665em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.11333499999999996em;"><span></span></span></span></span></span><span class="mclose">)</span></span></span></span></li>
+<li>一个流直接连通性就可以了
+<ul>
+<li>省选联考 2018 劈配</li>
+</ul>
+</li>
+<li>最大流转最小割，数据结构维护
+<ul>
+<li>U202373、某个 pkusc 题</li>
+</ul>
+</li>
+<li>最大流转对偶图最短路
+<ul>
+<li>csp2021 T4</li>
+<li>平面图最小割计数</li>
+</ul>
+</li>
+<li>模拟费用流
+<ul>
+<li><s>费用流跑不动就模拟费用流</s><br />
+- NOI2019 序列</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="最短路mst"><a class="markdownIt-Anchor" href="#最短路mst"></a> 最短路/mst</h2>
+<ul>
+<li>成环的特殊 DP 转移，用最短路解决</li>
+<li>差分约束</li>
+<li>0/1 最短路：bfs</li>
+<li>非负边权最长路：缩点，单个 scc 里面有正边输出 inf，否则跑 DAG 最长路</li>
+<li>2x2 子矩阵 3 推 1：行、列分别建一列点，两列点之间建边，转化为生成树相关</li>
+</ul>
+<h2 id="dp"><a class="markdownIt-Anchor" href="#dp"></a> dp</h2>
+<ul>
+<li>限制和断点有关的分段 DP
+<ul>
+<li>强制结尾，转移点枚举上一个，但是限制考虑下一个
+<ul>
+<li>AGC009C</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>强制结尾思想
+<ul>
+<li>可以去掉一维，代价通常是转移多一维，数据结构优化</li>
+<li>P8277</li>
+</ul>
+</li>
+<li>分治优化
+<ul>
+<li>需要转移可以合并，且限制可以拆分</li>
+<li>P5979</li>
+<li>点分治可以类似优化树上 dp？（做了一些尝试，似乎在大部分情况下等价于 HLD 启发式合并）</li>
+</ul>
+</li>
+<li>整体 DP
+<ul>
+<li>状态数爆炸，但是可以滚动，而且可以数据结构整体维护转移</li>
+<li>两个人在数轴上游走，有一些点要求至少一个人到达（线段树维护）</li>
+</ul>
+</li>
+<li>轮廓线 DP
+<ul>
+<li>“轮廓线”并不一定要是真正意义上的轮廓线，只是对于一个图，如果能够保证任意时刻只需要考虑很少的点就可以了</li>
+<li>通俗来讲是一个“状压露在外面的部分”的想法，通过一些手段让露在外面的不会太多</li>
+<li>两个环中间夹一个图然后计数子图那个破题</li>
+</ul>
+</li>
+<li>乱搞
+<ul>
+<li>神秘状压猜一手状态个数不多，写个记搜直接过</li>
+</ul>
+</li>
+<li>使用一些贪心方法卡出一个答案的比较紧的界，利用这个界去除一些显然不优的状态
+<ul>
+<li>CF1830D：黑白染色把答案下界卡到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>n</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">n^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span>，导出同色连通块最大 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msqrt><mi>n</mi></msqrt><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(\sqrt n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.05028em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8002800000000001em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="padding-left:0.833em;">n</span></span><span style="top:-2.76028em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.23972em;"><span></span></span></span></span></span><span class="mclose">)</span></span></span></span> 的结论</li>
+</ul>
+</li>
+</ul>
+<h2 id="计数"><a class="markdownIt-Anchor" href="#计数"></a> 计数</h2>
+<ul>
+<li>容斥
+<ul>
+<li>不好做就试着把限制反过来
+<ul>
+<li>&lt;=x的拆分</li>
+</ul>
+</li>
+<li>积和式
+<ul>
+<li>sum prod [cond] = sum prod (1-[!cond])，打开 prod 得到容斥系数</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>算贡献的思想
+<ul>
+<li>本质是交换求和顺序</li>
+</ul>
+</li>
+<li>生成函数</li>
+</ul>
+<h2 id="数论"><a class="markdownIt-Anchor" href="#数论"></a> 数论</h2>
+<ul>
+<li>积性函数线性筛</li>
+<li>i^k线性筛</li>
+<li>Mobius 函数
+<ul>
+<li>本质是迪利克雷差分的容斥系数</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi><mo>∗</mo><mn>1</mn><mo>=</mo><mi>e</mi></mrow><annotation encoding="application/x-tex">\mu*1=e</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6597200000000001em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">μ</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">e</span></span></span></span></li>
+</ul>
+</li>
+<li>欧拉函数
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>φ</mi><mo>∗</mo><mn>1</mn><mo>=</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">\varphi*1=n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6597200000000001em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">φ</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">n</span></span></span></span></li>
+</ul>
+</li>
+<li>欧拉定理
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>gcd</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>a</mi><mo separator="true">,</mo><mi>p</mi><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\gcd(a,p)=1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span style="margin-right:0.01389em;">g</span>cd</span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">p</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>，有 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>a</mi><mrow><mi>φ</mi><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></msup><mo>≡</mo><mn>1</mn><mspace></mspace><mspace width="0.4444444444444444em"/><mo stretchy="false">(</mo><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">d</mi></mrow><mspace width="0.3333333333333333em"/><mi>p</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">a^{\varphi(p)}\equiv 1\pmod p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8879999999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8879999999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">φ</span><span class="mopen mtight">(</span><span class="mord mathnormal mtight">p</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≡</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mspace allowbreak"></span><span class="mspace" style="margin-right:0.4444444444444444em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord"><span class="mord mathrm">m</span><span class="mord mathrm">o</span><span class="mord mathrm">d</span></span></span><span class="mspace" style="margin-right:0.3333333333333333em;"></span><span class="mord mathnormal">p</span><span class="mclose">)</span></span></span></span></li>
+<li>不要求 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">p</span></span></span></span> 是质数</li>
+</ul>
+</li>
+<li>扩展欧拉定理
+<ul>
+<li>指数上套 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>log</mi><mo>⁡</mo></mrow><annotation encoding="application/x-tex">\log</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span></span></span></span> 层就不变了</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://soly5tic.github.io/2020/11/15/common-tricks/" data-id="clrlkgrtw0002iwvhgmz77b3h" data-title="一些常见套路" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%80%BB%E7%BB%93/" rel="tag">总结</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/05/26/codeforces-atcoder-notes/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          丢人彩笔 oier 直播被 CF 2000 / AT 1500 干碎现场
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%80%BB%E7%BB%93/" rel="tag">总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B4%E6%B4%BB/" rel="tag">整活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%B8%E8%AE%B0/" rel="tag">游记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/%E6%80%BB%E7%BB%93/" style="font-size: 15px;">总结</a> <a href="/tags/%E6%95%B4%E6%B4%BB/" style="font-size: 20px;">整活</a> <a href="/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 10px;">游记</a> <a href="/tags/%E9%A2%98%E8%A7%A3/" style="font-size: 20px;">题解</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/01/19/about/">关于博主</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/19/puzzle-loop-solver/">Puzzle Loop Solver</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/07/random-chess/">高血压小实验</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/01/luogu-p10037/">Luogu P10037 赛时爆标做法</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/24/usaco23dec-p-t3/">题解 [USACO23DEC] Train Scheduling P</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 Sol 1<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
