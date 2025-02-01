@@ -103,20 +103,20 @@
 <p>开场先倒开，M 没看懂题，于是把签到 L 写掉了。写完看有人过 C，开了一下发现是个爆搜题，于是让 kyj 写了，然后我去看 G。</p>
 <p>kyj 在这之前开出了 E，我看了一遍题猜了个不会添加超过五个字符，于是 kyj 写了个 dp 就过了。</p>
 <p>此时 kys 上机写 A，我接着研究 G，想了一会感觉就是按位贪心，但是好像要写个高精？</p>
-<p>同时 kyj 看了一会 M 发现好像是简单题，但是我还是没看懂题，不知道它是在 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>−</mo><mi>r</mi></mrow><annotation encoding="application/x-tex">R-r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span></span></span></span> 范围内随圆心还是在 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span></span></span></span> 范围内随圆心。于是 kyj 按在 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span></span></span></span> 范围内去随圆心写了一遍，结果 wa 掉了，于是我去改了个 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>−</mo><mi>r</mi></mrow><annotation encoding="application/x-tex">R-r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span></span></span></span> 范围就过了。</p>
+<p>同时 kyj 看了一会 M 发现好像是简单题，但是我还是没看懂题，不知道它是在 $R-r$ 范围内随圆心还是在 $R$ 范围内随圆心。于是 kyj 按在 $R$ 范围内去随圆心写了一遍，结果 wa 掉了，于是我去改了个 $R-r$ 范围就过了。</p>
 <p>这时候 G 差不多也会了，搓了点 python 就过了。期间 kys 和 kyj 讨论出了 D 的做法，于是让他们上机，我下去研究 H。</p>
 <p>然后对着 H 研究了半天没搞明白怎么避免跑二分图匹配，结果给 kys 和 kyj 描述了一遍做法之后他们直接掏出了一个巨快的二分图匹配板子把 H 过了……神秘。</p>
-<p>然后又去研究了一会 B，推反射容斥的式子推了半天没推出来，结果 kyj 告诉我只需要让对应位置不碰到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 就可以往后加一个 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mord">1</span></span></span></span>。于是他写了一下过了，我又跑去研究 K。</p>
+<p>然后又去研究了一会 B，推反射容斥的式子推了半天没推出来，结果 kyj 告诉我只需要让对应位置不碰到 $0$ 就可以往后加一个 $-1$。于是他写了一下过了，我又跑去研究 K。</p>
 <p>大概看了 15 分钟发现最优解肯定是去掉值域上的一段区间，并且不是这个形式的一定严格不优。不过看到 2e6 没敢直接上主席树二分哈希比字典序，想了一下得到了维护两个序列的 diff 看最小值的做法。上机拍了一下结论没有问题，于是写了一遍整个做法就过了。</p>
 <p>期间 kys 和 kyj 一直在研究 J，然后他们说好像有一个乱搞，于是我让他们上机写，我下去开始对着 I 自闭。结果 I 还看错题了，一开始以为只需要求最优解的权值，于是搁那大编特编抽象乱搞，直到 kys kyj 把 J 过了然后来看 I 才发现还要算最优解的个数，，，，</p>
 <p>最后开始瞎爆搜，然而没写完（写完了应该也过不去），于是 11 题结束。</p>
-<hr />
+<hr>
 <p>赛后发现 I 的做法好像就是从下往上加点/加边，就可以保证维护的轮廓线一直从左往右，然后就可以状压了。为了保证计数不重还要记一下上一次操作的位置，不过这个是小问题。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://soly5tic.github.io/2024/10/15/ucup3-s12/" data-id="cm59l8yv3001slgvh4fpr45xf" data-title="The 3rd Universal Cup Stage 12 记录" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://soly5tic.github.io/2024/10/15/ucup3-s12/" data-id="cm6m8kxlp001zd0vhhq8vf1bl" data-title="The 3rd Universal Cup Stage 12 记录" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
         <a href="/2024/10/15/ucup3-s12/#comments" class="article-comment-link">
@@ -180,7 +180,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%80%BB%E7%BB%93/" rel="tag">总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B4%E6%B4%BB/" rel="tag">整活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%B8%E8%AE%B0/" rel="tag">游记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A7%91%E6%8A%80/" rel="tag">科技</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%80%BB%E7%BB%93/" rel="tag">总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B4%E6%B4%BB/" rel="tag">整活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%B8%E8%AE%B0/" rel="tag">游记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a></li></ul>
     </div>
   </div>
 
@@ -190,7 +190,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/%E6%80%BB%E7%BB%93/" style="font-size: 15px;">总结</a> <a href="/tags/%E6%95%B4%E6%B4%BB/" style="font-size: 12.5px;">整活</a> <a href="/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 17.5px;">游记</a> <a href="/tags/%E7%A7%91%E6%8A%80/" style="font-size: 10px;">科技</a> <a href="/tags/%E9%A2%98%E8%A7%A3/" style="font-size: 20px;">题解</a>
+      <a href="/tags/%E6%80%BB%E7%BB%93/" style="font-size: 13.33px;">总结</a> <a href="/tags/%E6%95%B4%E6%B4%BB/" style="font-size: 10px;">整活</a> <a href="/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 16.67px;">游记</a> <a href="/tags/%E9%A2%98%E8%A7%A3/" style="font-size: 20px;">题解</a>
     </div>
   </div>
 
@@ -249,7 +249,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       
-      &copy; 2024 Sol 1<br>
+      &copy; 2025 Sol 1<br>
       Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
