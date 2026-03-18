@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>PKU 操作系统 TacOS Lab1 踩坑记录 | Sol 1</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="我能在完全不会 Rust 的情况下战胜 TacOS 吗？？！！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PKU 操作系统 TacOS Lab1 踩坑记录">
+<meta property="og:url" content="http://soly5tic.github.io/2026/03/18/tacos-notes-lab1/index.html">
+<meta property="og:site_name" content="Sol 1">
+<meta property="og:description" content="我能在完全不会 Rust 的情况下战胜 TacOS 吗？？！！">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-03-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-18T08:40:53.265Z">
+<meta property="article:author" content="Sol 1">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Sol 1" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon_32.ico">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Sol 1</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://soly5tic.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-tacos-notes-lab1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/03/18/tacos-notes-lab1/" class="article-date">
+  <time class="dt-published" datetime="2026-03-17T16:00:00.000Z" itemprop="datePublished">2026-03-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      PKU 操作系统 TacOS Lab1 踩坑记录
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>我能在完全不会 Rust 的情况下战胜 TacOS 吗？？！！</p>
+<span id="more"></span>
+<h2 id="lab0"><a class="markdownIt-Anchor" href="#lab0"></a> Lab0</h2>
+<p>这个其实没啥坑，照着手册的 Option A 直接配就好了。只要你有一个好用的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mn>7</mn><mn>3</mn></mfrac></mrow><annotation encoding="application/x-tex">\frac 73</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.190108em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">7</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span> 根木棍就不是问题。</p>
+<p>同学用 CLab 好像出了神秘问题，不建议使用 CLab。</p>
+<h2 id="lab1"><a class="markdownIt-Anchor" href="#lab1"></a> Lab1</h2>
+<p>从这里开始坑就比较多，以下按我踩到的顺序依次写。</p>
+<h3 id="tool-下面的工具怎么用"><a class="markdownIt-Anchor" href="#tool-下面的工具怎么用"></a> <code>tool/</code> 下面的工具怎么用？</h3>
+<p>答案是……我也不知道。我首先尝试了直接 <code>cd</code> 进去然后 <code>cargo tt -b lab1</code>，但是按照 Option A 安装时自带的 rust 版本是 1.70，编译时有一些 package 需要更新的版本，于是就倒闭了。具体错误信息如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">error: package `quote v1.0.45` cannot be built because it requires rustc 1.71 or newer, while the currently active rustc version is 1.70.0</span><br><span class="line">Either upgrade to rustc 1.71 or newer, or use</span><br><span class="line">cargo update -p quote@1.0.45 --precise ver</span><br><span class="line">where `ver` is the latest version of `quote` supporting rustc 1.70.0</span><br></pre></td></tr></table></figure>
+<p><s>当然这是难不倒我的</s> 它已经给出了一个升级提示，于是我按照该方式操作：先 <code>rustup update stable</code> 再 <code>rustup default stable</code>。</p>
+<p>这样我成功获得了一个 1.94 版本的 rustc，然后 <code>cargo h</code> 就可以用了，但是 <code>cargo tt -b lab1</code> 仍然用不了，报错似乎是 <code>src/fs/disk.rs</code> 里面的一个 <code>const u8</code> 和 <code>const i8</code> 的类型不匹配问题。</p>
+<p>于是我又尝试了在根目录下面 override 使用 rustc 1.70 并在 <code>tool/</code> 下面使用 rustc 1.94，但是这样似乎仍然无法通过编译，报错与使用 1.94 版本编译 OS 是相同的。问 AI 说的是要增加一些文件，但是这样我不知道会不会导致本地通过然后提交上去少文件过不了，所以也没这么干。</p>
+<p>最后也没有解决，所以就压根没用上这个 tool，采用的 workaround 是 <code>cargo tt -b lab1 --dry</code> 可以显示测试各个 test case 的命令，在根目录下面一条一条的跑就行了。</p>
+<p>例如在 <code>tool</code> 下面运行 <code>cargo tt -b lab1 --dry</code> 的输出为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Command for donation-three:</span><br><span class="line">cargo run -r -q -F test-schedule -- -append donation-three</span><br><span class="line">Command for priority-alarm:</span><br><span class="line">cargo run -r -q -F test-schedule -- -append priority-alarm</span><br><span class="line">Command for alarm-zero:</span><br><span class="line">cargo run -r -q -F test-schedule -- -append alarm-zero</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">Command for alarm-multiple:</span><br><span class="line">cargo run -r -q -F test-schedule -- -append alarm-multiple</span><br></pre></td></tr></table></figure>
+<p>在根目录下面运行 <code>cargo run -r -q -F test-schedule -- -append alarm-zero</code>，即可单独测试对应的 test case。这个 case 应该是直接可以通过的（因为 sleep 提供的是一个 working example）。看到如下输出说明测试正常。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[21 ms] Hello, World!</span><br><span class="line">[42 ms] [PASS]</span><br><span class="line">[42 ms] Leaving test...</span><br><span class="line">[57 ms] Goodbye, World!</span><br></pre></td></tr></table></figure>
+<h3 id="alarm-clock"><a class="markdownIt-Anchor" href="#alarm-clock"></a> Alarm clock</h3>
+<p>我们观察到 <code>src/thread.rs</code> 下面有需要修改的 <code>sleep</code> 函数，而 <code>src/sbi/timer.rs</code> 下面有一个更改计时器的 <code>tick</code> 函数，从而我们需要做的就是：</p>
+<ul>
+<li>调用 <code>sleep(time)</code> 的时候，我们直接把当前线程 <code>block</code> 住，然后搞一个全局数据结构记录下来我们需要在当前 tick + <code>time</code> 时间唤醒这个进程。</li>
+<li>调用 <code>tick()</code> 的时候，我们从这个全局数据结构里面弹出唤醒时间在当前时间之前的线程，把这些线程唤醒。</li>
+</ul>
+<p>理论上这个功能我们可以搞一个优先队列，但是由于 TacOS 里面似乎把 <code>std</code> 给 ban 了，并且也没有给我们提供 <code>std::cmp::Ordering</code> 的等价物，从而我们只能使用 <code>BTreeMap</code> 维护 <code>(time, thread)</code> 对。但是这个东西比较麻烦的地方在于它不支持两个相同的 key，从而我们需要维护 <code>(time, Vec&lt;thread&gt;)</code> 将唤醒时间相同的进程存到一起。</p>
+<p>由于我们需要保证 <code>sleep</code> 是并发安全的，所以我们需要 <code>Mutex</code> 锁。但是这个东西还有一个不是 const function 的神秘问题，所以我们还需要一个叫 <code>Lazy</code> 的东西。至于这玩意是啥我也不知道（我完全不会 Rust），反正直接用就好了。最终这样声明全局数据结构 <code>ALARM</code>：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> ALARM: Lazy&lt;Mutex&lt;BTreeMap&lt;<span class="type">i64</span>, <span class="type">Vec</span>&lt;Arc&lt;Thread&gt;&gt;&gt;&gt;&gt; =</span><br><span class="line">    Lazy::<span class="title function_ invoke__">new</span>(|| Mutex::<span class="title function_ invoke__">new</span>(BTreeMap::<span class="title function_ invoke__">new</span>()));</span><br></pre></td></tr></table></figure>
+<p>需要的所有东西的位置：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> crate::sync::&#123;Lazy, Mutex&#125;;</span><br><span class="line"><span class="keyword">use</span> crate::thread::Thread;</span><br><span class="line"><span class="keyword">use</span> alloc::collections::BTreeMap;</span><br><span class="line"><span class="keyword">use</span> alloc::sync::Arc;</span><br><span class="line"><span class="keyword">use</span> alloc::vec::<span class="type">Vec</span>;</span><br></pre></td></tr></table></figure>
+<p>使用 <code>ALARM.lock()</code> 访问内部受保护的 <code>BTreeMap</code>。</p>
+<p>剩下的代码写起来都比较符合直觉，就不多说了。如果遇到奇怪的类型不匹配问题（例如多引用 / 不变量 vs 变量这种），基本上把代码和错误信息粘给 LLM 都能直接帮你调出来。</p>
+<p>如果测试的时候爆了，可以通过 <code>cargo run -r -q -F test-schedule,debug -- -append &lt;test-case&gt;</code> 查看单个 test case 的详细运行过程。</p>
+<p>如果出现类似 <code>panicked on no thread is ready</code> 的错误信息，并且 debug 发现 Idle 线程或者别的线程莫名其妙被 block 了，可以检查一下是不是死锁了。如果你的循环 / if 条件里面写的是 <code>if let Some(v) = ALARM.lock().get_mut(&amp;time)</code> 然后循环 / if 里面还有 <code>ALARM.lock()</code> 就会死锁。这个时候需要在循环 / if 外面声明一个 <code>let guard = ALARM.lock();</code> 然后在 if 条件和内部都只用 <code>guard</code> 访问。</p>
+<p>这里我暂时通过了 <code>alarm</code> 开头的五个 case。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://soly5tic.github.io/2026/03/18/tacos-notes-lab1/" data-id="cmmvtldla0029rwu21rl27l6z" data-title="PKU 操作系统 TacOS Lab1 踩坑记录" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+        <a href="/2026/03/18/tacos-notes-lab1/#comments" class="article-comment-link">
+          <span class="post-comments-count valine-comment-count fa fa-comment" data-xid="/2026/03/18/tacos-notes-lab1/" itemprop="commentCount"></span>
+          Comments
+        </a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2026/02/04/connect-remote-wsl/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">将 VSCode 连接到远程主机上的 WSL</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+  <section id="comments" class="vcomment">
+
+  </section>
+</section>
+        
+          <aside id="sidebar">
+  
+      <div class="widget-wrap">
+    <h3 class="widget-title">Friends</h3>
+    <div class="widget">
+      <ul>
+        <li>
+          <a target="_blank" rel="noopener" href="https://www.blog-e.top/">Blog-E</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%80%BB%E7%BB%93/" rel="tag">总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B4%E6%B4%BB/" rel="tag">整活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%82%E8%B0%88/" rel="tag">杂谈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%B8%E8%AE%B0/" rel="tag">游记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/%E6%80%BB%E7%BB%93/" style="font-size: 15px;">总结</a> <a href="/tags/%E6%95%B4%E6%B4%BB/" style="font-size: 15px;">整活</a> <a href="/tags/%E6%9D%82%E8%B0%88/" style="font-size: 10px;">杂谈</a> <a href="/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 20px;">游记</a> <a href="/tags/%E9%A2%98%E8%A7%A3/" style="font-size: 20px;">题解</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/03/">March 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/02/">February 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/01/">January 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/11/">November 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/01/">January 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">November 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/10/">October 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/03/18/tacos-notes-lab1/">PKU 操作系统 TacOS Lab1 踩坑记录</a>
+          </li>
+        
+          <li>
+            <a href="/2026/02/04/connect-remote-wsl/">将 VSCode 连接到远程主机上的 WSL</a>
+          </li>
+        
+          <li>
+            <a href="/2026/02/01/buy-or-creds-with-crypto/">使用加密货币购买 OpenRouter credit 踩坑记录</a>
+          </li>
+        
+          <li>
+            <a href="/2026/01/31/flash-attn-installation/">Flash Attention 安装记录</a>
+          </li>
+        
+          <li>
+            <a href="/2026/01/12/collapse-piano/">Collapse (feat. 藍月なくる) 钢琴改编</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    <div class="widget-wrap">
+    <h3 class="widget-title">Page Views</h3>
+          <img src="https://badges.toozhao.com/badges/01HN5MV9JDS57RZF30YTKM0DVY/green.svg" alt="Page Views Count">
+  </div>
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2026 Sol 1<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js"></script>
+
+<script>
+    var GUEST_INFO = ['nick','mail','link'];
+    var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+        return GUEST_INFO.indexOf(item) > -1
+    });
+    var notify = 'false' == true;
+    var verify = 'false' == true;
+    new Valine({
+        el: '.vcomment',
+        notify: notify,
+        verify: verify,
+        appId: "eCOqy671NBhdnqpII5jCnb9f-gzGzoHsz",
+        appKey: "OWLPWcS3Bjm5x1YJG144u61I",
+        placeholder: "Just go go",
+        pageSize:'10',
+        avatar:'mm',
+        lang:'zh-cn'
+    });
+</script>
+
+  </div>
+</body>
+</html>
