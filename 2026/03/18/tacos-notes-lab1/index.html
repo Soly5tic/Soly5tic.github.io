@@ -4,21 +4,21 @@
   <meta charset="utf-8">
   
   
-  <title>PKU 操作系统 TacOS Lab1 踩坑记录 | Sol 1</title>
+  <title>PKU 操作系统 TacOS Lab1 踩坑记录 | Sol1 Logs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="我能在完全不会 Rust 的情况下战胜 TacOS 吗？？！！">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PKU 操作系统 TacOS Lab1 踩坑记录">
 <meta property="og:url" content="http://soly5tic.github.io/2026/03/18/tacos-notes-lab1/index.html">
-<meta property="og:site_name" content="Sol 1">
+<meta property="og:site_name" content="Sol1 Logs">
 <meta property="og:description" content="我能在完全不会 Rust 的情况下战胜 TacOS 吗？？！！">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2026-03-17T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-18T08:40:53.265Z">
+<meta property="article:modified_time" content="2026-03-22T11:56:16.200Z">
 <meta property="article:author" content="Sol 1">
 <meta name="twitter:card" content="summary">
   
-    <link rel="alternate" href="/atom.xml" title="Sol 1" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="Sol1 Logs" type="application/atom+xml">
   
   
     <link rel="shortcut icon" href="/favicon_32.ico">
@@ -47,7 +47,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">Sol 1</a>
+        <a href="/" id="logo">Sol1 Logs</a>
       </h1>
       
     </div>
@@ -99,12 +99,16 @@
       
         <p>我能在完全不会 Rust 的情况下战胜 TacOS 吗？？！！</p>
 <span id="more"></span>
-<h2 id="lab0"><a class="markdownIt-Anchor" href="#lab0"></a> Lab0</h2>
+<p>注：</p>
+<ol>
+<li>由于本人目前正在修这门课，为了避免被抄袭，这里暂不给出大段代码。如果确有查看代码的需求，可以私下联系博主。</li>
+<li>该 Lab 大量涉及并发编程，博主水平有限无法保证自己的代码的正确性，甚至不能保证最终的代码一定能够通过所有 testcase（<s>我只能通过狂暴重复运行保证代码以高概率通过所有 testcase</s>）。因此以下所有做法仅供参考，如果参考了做法中有问题的部分导致扣分博主概不负责。</li>
+</ol>
+<h2 id="0-lab0"><a class="markdownIt-Anchor" href="#0-lab0"></a> 0. Lab0</h2>
 <p>这个其实没啥坑，照着手册的 Option A 直接配就好了。只要你有一个好用的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mn>7</mn><mn>3</mn></mfrac></mrow><annotation encoding="application/x-tex">\frac 73</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.190108em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">7</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span> 根木棍就不是问题。</p>
 <p>同学用 CLab 好像出了神秘问题，不建议使用 CLab。</p>
-<h2 id="lab1"><a class="markdownIt-Anchor" href="#lab1"></a> Lab1</h2>
-<p>从这里开始坑就比较多，以下按我踩到的顺序依次写。</p>
-<h3 id="tool-下面的工具怎么用"><a class="markdownIt-Anchor" href="#tool-下面的工具怎么用"></a> <code>tool/</code> 下面的工具怎么用？</h3>
+<p>从 Lab1 开始坑就比较多，以下按我踩到的顺序依次写。</p>
+<h2 id="1-tool-下面的工具怎么用"><a class="markdownIt-Anchor" href="#1-tool-下面的工具怎么用"></a> 1. <code>tool/</code> 下面的工具怎么用？</h2>
 <p>答案是……我也不知道。我首先尝试了直接 <code>cd</code> 进去然后 <code>cargo tt -b lab1</code>，但是按照 Option A 安装时自带的 rust 版本是 1.70，编译时有一些 package 需要更新的版本，于是就倒闭了。具体错误信息如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">error: package `quote v1.0.45` cannot be built because it requires rustc 1.71 or newer, while the currently active rustc version is 1.70.0</span><br><span class="line">Either upgrade to rustc 1.71 or newer, or use</span><br><span class="line">cargo update -p quote@1.0.45 --precise ver</span><br><span class="line">where `ver` is the latest version of `quote` supporting rustc 1.70.0</span><br></pre></td></tr></table></figure>
 <p><s>当然这是难不倒我的</s> 它已经给出了一个升级提示，于是我按照该方式操作：先 <code>rustup update stable</code> 再 <code>rustup default stable</code>。</p>
@@ -115,7 +119,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Command for donation-three:</span><br><span class="line">cargo run -r -q -F test-schedule -- -append donation-three</span><br><span class="line">Command for priority-alarm:</span><br><span class="line">cargo run -r -q -F test-schedule -- -append priority-alarm</span><br><span class="line">Command for alarm-zero:</span><br><span class="line">cargo run -r -q -F test-schedule -- -append alarm-zero</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">Command for alarm-multiple:</span><br><span class="line">cargo run -r -q -F test-schedule -- -append alarm-multiple</span><br></pre></td></tr></table></figure>
 <p>在根目录下面运行 <code>cargo run -r -q -F test-schedule -- -append alarm-zero</code>，即可单独测试对应的 test case。这个 case 应该是直接可以通过的（因为 sleep 提供的是一个 working example）。看到如下输出说明测试正常。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[21 ms] Hello, World!</span><br><span class="line">[42 ms] [PASS]</span><br><span class="line">[42 ms] Leaving test...</span><br><span class="line">[57 ms] Goodbye, World!</span><br></pre></td></tr></table></figure>
-<h3 id="alarm-clock"><a class="markdownIt-Anchor" href="#alarm-clock"></a> Alarm clock</h3>
+<h2 id="2-alarm-clock"><a class="markdownIt-Anchor" href="#2-alarm-clock"></a> 2. Alarm clock</h2>
 <p>我们观察到 <code>src/thread.rs</code> 下面有需要修改的 <code>sleep</code> 函数，而 <code>src/sbi/timer.rs</code> 下面有一个更改计时器的 <code>tick</code> 函数，从而我们需要做的就是：</p>
 <ul>
 <li>调用 <code>sleep(time)</code> 的时候，我们直接把当前线程 <code>block</code> 住，然后搞一个全局数据结构记录下来我们需要在当前 tick + <code>time</code> 时间唤醒这个进程。</li>
@@ -130,12 +134,73 @@
 <p>剩下的代码写起来都比较符合直觉，就不多说了。如果遇到奇怪的类型不匹配问题（例如多引用 / 不变量 vs 变量这种），基本上把代码和错误信息粘给 LLM 都能直接帮你调出来。</p>
 <p>如果测试的时候爆了，可以通过 <code>cargo run -r -q -F test-schedule,debug -- -append &lt;test-case&gt;</code> 查看单个 test case 的详细运行过程。</p>
 <p>如果出现类似 <code>panicked on no thread is ready</code> 的错误信息，并且 debug 发现 Idle 线程或者别的线程莫名其妙被 block 了，可以检查一下是不是死锁了。如果你的循环 / if 条件里面写的是 <code>if let Some(v) = ALARM.lock().get_mut(&amp;time)</code> 然后循环 / if 里面还有 <code>ALARM.lock()</code> 就会死锁。这个时候需要在循环 / if 外面声明一个 <code>let guard = ALARM.lock();</code> 然后在 if 条件和内部都只用 <code>guard</code> 访问。</p>
-<p>这里我暂时通过了 <code>alarm</code> 开头的五个 case。</p>
+<p>理论上到这里你应该通过了以 <code>alarm</code> 开头的五个 case。<s>不过写完后面的优先级调度可能就又挂了，至于为什么我们下回分解。</s></p>
+<h2 id="3-priority-scheduling"><a class="markdownIt-Anchor" href="#3-priority-scheduling"></a> 3. Priority scheduling</h2>
+<p><s>虽然我写完 alarm 已经燃尽了但是</s>其实这一部分才是 lab1 的主菜。</p>
+<p>请教 OpenClaw 发现优先级调度大概可以拆成三个部分：</p>
+<ul>
+<li>实现 scheduler；</li>
+<li>针对 <code>Mutex</code>、<code>Semaphore</code> 和 <code>Condvar</code> 实现基于优先级的调度；</li>
+<li>实现 donation。</li>
+</ul>
+<p>以下依次拆解。</p>
+<h3 id="31-实现-scheduler"><a class="markdownIt-Anchor" href="#31-实现-scheduler"></a> 3.1 实现 scheduler</h3>
+<p>首先的一个问题是代码在哪写。</p>
+<p>我们观察到 <code>src/thread.rs</code> 下面的 <code>schedule()</code> 函数使用的是 <code>src/thread/manager.rs</code> 里面的 <code>Manager</code> 类，而 <code>Manager</code> 内部使用了一个叫 <code>Scheduler</code> 的东西，从而这个就是我们要的。打开 <code>src/thread/scheduler.rs</code> 看到如下代码：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[cfg(feature = <span class="string">&quot;thread-scheduler-priority&quot;</span>)]</span></span><br><span class="line"><span class="comment">// (Lab1) Your task: priority scheduling</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">type</span> <span class="title class_">Scheduler</span> = self::fcfs::Fcfs;</span><br><span class="line"><span class="meta">#[cfg(not(feature = <span class="string">&quot;thread-scheduler-priority&quot;</span>))]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">type</span> <span class="title class_">Scheduler</span> = self::fcfs::Fcfs;</span><br></pre></td></tr></table></figure>
+<p>同时我们发现 <code>src/thread/scheduler/fcfs.rs</code> 下面有个叫 <code>Fcfs</code> 的东西，里面写的是个基于 <code>deque</code> 的 FIFO 调度，从而我们就是要把这个东西换成优先级调度。我们在 <code>fcfs.rs</code> 中新建一个结构体 <code>Priority</code> 并将以上代码中 <code>// (Lab1) ...</code> 下面一行的 <code>Fcfs</code> 替换为 <code>Priority</code>。<code>Priority</code> 结构体整体对着 <code>Fcfs</code> 照猫画虎。<s>相信有自信在不会 Rust 的情况下选 TacOS 的大家都是有充分强的照猫画虎能力的。</s></p>
+<p>那么自然的想法就是我们直接拿一个 <code>BTreeMap</code> 来按优先级顺序存储所有的线程。不过这里要求我们对同优先级的进程仍然按照 FIFO 的顺序调度，所以我们还需要在里面额外使用一个时间戳变量作为排序的第二关键字。</p>
+<p>在修改线程的优先级时，我们为了修改按优先级顺序存储线程的 <code>BTreeMap</code> 需要知道该线程对应的时间戳，由于该信息没有被保存在线程内部，我们需要再额外使用一个 map 来存储线程对应的优先级和时间戳。这里索引可以直接使用线程的 ID，该信息可以通过 <code>thread.id()</code> 获取。</p>
+<p><code>register</code> 和 <code>schedule</code> 的实现是直接的。注意点：</p>
+<ul>
+<li>为了避免中断引发的问题，我们在两个函数开始时关闭中断（即 <code>crate::sbi::interrupt()::set(false)</code>，将该函数返回值（即原本中断是否打开）记录于变量中。在函数返回时恢复状态。</li>
+<li><code>schedule</code> 中，需要判断当前线程优先级是否最高。如果当前线程处于 <code>Running</code> 状态并且优先级高于队列中其他线程，则应继续运行当前线程（即返回 <code>None</code>）。</li>
+</ul>
+<p>实现 <code>Priority</code> 结构体后回到 <code>src/thread.rs</code> 下面，修改 <code>set_priority</code> 函数和 <code>get_priority</code> 函数。这一部分的实现整体不会遇到太多问题。需要注意现在 <code>set_priority</code> 以及 <code>wake_up</code> 在将当前线程加入 scheduler 之后都要判断是否需要重新 schedule。</p>
+<p>完成这部分之后，你应该可以额外通过 <code>priority-alarm</code>、<code>priority-change</code>、<code>priority-fifo</code> 和 <code>priority-preempt</code>。</p>
+<h3 id="32-实现控制原语的优先级调度"><a class="markdownIt-Anchor" href="#32-实现控制原语的优先级调度"></a> 3.2 实现控制原语的优先级调度</h3>
+<p>我们需要保证当若干线程被同一个 <code>Mutex</code> 锁 / <code>Semaphore</code> 信号量 / <code>Condvar</code> 条件变量卡住时，如果有一个解锁 / 信号量增加等操作使得我们可以唤醒一个线程继续，我们需要选择优先级最高的线程。</p>
+<p>我们首先注意到代码中 <code>Mutex</code> 基于 <code>Sleep</code> 而 <code>Sleep</code> 基于 <code>Semaphore</code>，从而我们直接不用管 <code>Mutex</code>。而 <code>Condvar</code> 虽然看起来基于 <code>Semaphore</code> 但是它的等待队列其实是自己实现的，所以我们还需要分开实现。</p>
+<p>由于后续优先级可能通过 donation 改变，所以这里我们最好不用 <code>BTreeMap</code>，而是直接拿个 <code>Vec</code> 存然后暴力找最大值。可以通过从前往后遍历并在后面 push 实现 FIFO。</p>
+<p><s>实际上好像测试数据没卡这个， <code>BTreeMap</code> 也能过。</s></p>
+<p>这块整体无难点。完成后，可以通过 <code>priority</code> 开头的所有测试点。</p>
+<h3 id="33-优先级捐赠"><a class="markdownIt-Anchor" href="#33-优先级捐赠"></a> 3.3 优先级捐赠</h3>
+<p>本 lab 最大难点。如果不熟悉 Rust 可能会导致选择一些难以实现的设计方案，写出来之后卡在一个编译错误上面，然后拼尽全力无法战胜（这里的主要问题是 <code>Thread</code> 里面的东西要求其可以安全地在线程之间共享，因此很多东西无法直接放进去）。由于尝试过并且倒闭的方案太多了就不详细写心路历程了，以下直接给出我经过很多尝试得到的最终方案。</p>
+<p>由于说明了不需要对 <code>Semaphore</code> 实现，我们只需要调整 <code>Sleep</code> 和 <code>Thread</code>。我们要实现的是：</p>
+<ul>
+<li>如果一个线程 H 尝试获得一把锁，但是这把锁在 M 手里，那么 M 通过这把锁获取到 H 的优先级。</li>
+<li>如果此时 M 正在等待 L 手里的一把锁，则 L 也要递归地通过其正在持有的锁获得 H 的优先级。</li>
+<li>当一个线程释放一把锁时，其失去通过这把锁获得的所有优先级。</li>
+</ul>
+<p>对于 <code>Sleep</code>，我们使用一个静态变量（类似 <code>TICKS</code>）对每一个该类型的锁分配一个唯一的 id。为了方便后续与不持有锁做区分，我们令这个 id 从 1 开始。</p>
+<p>对于 <code>Thread</code>，我们额外记录以下信息：</p>
+<ul>
+<li>其正在等待获取的锁被哪个线程持有：类型为 <code>Mutex&lt;Option&lt;Arc&lt;Thread&gt;&gt;&gt;</code>。如果当前没有被锁卡住，则值为 <code>None</code>。</li>
+<li>其正在等待获取的锁的 id：类型为 <code>AtomicUsize</code>。</li>
+<li>其接受的捐赠：使用两个 <code>Mutex&lt;BTreeMap&gt;</code> 保存；
+<ul>
+<li>第一个按优先级顺序保存每一个优先级受到了几个捐赠（<code>BTreeMap&lt;u32, i64&gt;</code>），用于获取有效优先级；</li>
+<li>第二个保存每一把锁受到了哪些捐赠（<code>BTreeMap&lt;usize, Vec&lt;u32&gt;&gt;</code>），用于在释放锁时撤回通过这把锁获得的捐赠。</li>
+</ul>
+</li>
+</ul>
+<p>每个 <code>Thread</code> 向外暴露两个优先级捐赠相关的方法：</p>
+<ul>
+<li><code>donate</code>：传入捐赠的优先级和锁 id，加入两个 <code>BTreeMap</code>，检查当前进程是否被锁卡住，如果卡住则递归捐赠。由于进程一定被锁卡住所以一定不在 <code>Ready</code> 状态，故递归捐赠中不需要动 scheduler，只需要在最外层检查是否需要更新 scheduler 即可。</li>
+<li><code>recall</code>：传入锁 id，删除与该锁相关的所有捐赠，更新 scheduler。</li>
+</ul>
+<p><code>Sleep</code> 中，<code>acquire</code> 时如果当前锁有 holder 则向其捐赠优先级；<code>release</code> 时对当前线程撤回捐赠。这部分实现直接，不多讲。</p>
+<p>正确实现该部分后，理论上可以通过所有测试点。如果挂了，可以先调 <code>donation-one</code>、<code>donation-two</code>、<code>donation-three</code>，这三个不涉及递归捐赠；如果这三个过了，再调 <code>donation-nest</code>，这个是比较简单的递归捐赠；最后再调 <code>donation-chain</code>。</p>
+<p>这部分写起来其实不难，主要难点在于不会 Rust 需要试很久才能得到一个合适的解决方案。</p>
+<p>如果你通过了所有 donation 开头的 case，不要急着开香槟，记得把之前的 case 再测一遍。如果都通过了，那么你可以开香槟了。如果没有，可以继续往下看。</p>
+<h2 id="4-我怎么-alarm-又爆了啊"><a class="markdownIt-Anchor" href="#4-我怎么-alarm-又爆了啊"></a> 4. 我怎么 alarm 又爆了啊？</h2>
+<p>由于我们改了 <code>Mutex</code> 的实现，而 alarm clock 里面又用了 <code>Mutex</code> 又用了 <code>sleep</code>，所以爆了其实也是正常现象。</p>
+<p>这里我试了试似乎主要问题是 sleep 过程中被 interrupt 会导致一个 blocked 的线程获取锁，然后线程就会虚空变成 ready。把第一部分的 <code>sleep</code> 的 <code>interrupt</code> 关掉就能解决所有问题。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://soly5tic.github.io/2026/03/18/tacos-notes-lab1/" data-id="cmmvtldla0029rwu21rl27l6z" data-title="PKU 操作系统 TacOS Lab1 踩坑记录" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://soly5tic.github.io/2026/03/18/tacos-notes-lab1/" data-id="cmn1pi4es00259cu27akraxt4" data-title="PKU 操作系统 TacOS Lab1 踩坑记录" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
         <a href="/2026/03/18/tacos-notes-lab1/#comments" class="article-comment-link">
