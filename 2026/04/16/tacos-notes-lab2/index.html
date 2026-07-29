@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>PKU 操作系统 TacOS Lab2 踩坑记录 | Sol1 Logs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="书接上回。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PKU 操作系统 TacOS Lab2 踩坑记录">
+<meta property="og:url" content="http://soly5tic.github.io/2026/04/16/tacos-notes-lab2/index.html">
+<meta property="og:site_name" content="Sol1 Logs">
+<meta property="og:description" content="书接上回。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-04-15T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-04-19T11:39:47.656Z">
+<meta property="article:author" content="Sol 1">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Sol1 Logs" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon_32.ico">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Sol1 Logs</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://soly5tic.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-tacos-notes-lab2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/04/16/tacos-notes-lab2/" class="article-date">
+  <time class="dt-published" datetime="2026-04-15T16:00:00.000Z" itemprop="datePublished">2026-04-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      PKU 操作系统 TacOS Lab2 踩坑记录
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://sol1.netlify.app/2026/03/18/tacos-notes-lab1/">书接上回</a>。</p>
+<span id="more"></span>
+<h2 id="5-为什么-tool-下面的工具又能用了"><a class="markdownIt-Anchor" href="#5-为什么-tool-下面的工具又能用了"></a> 5. 为什么 <code>tool/</code> 下面的工具又能用了？</h2>
+<p>大概就是做 Lab1 的时候死活用不了，结果准备做 Lab2 的时候代码一点没改突然就能用了。具体为啥我也不知道，可能是因为我在做 Lab2 之前和远程仓库同步了一下导致一些配置改了，然而现在直接在根目录下面 <code>cargo run</code> 又用不了了。</p>
+<p>当然这不是问题，我们可以直接 <code>cargo tt -b lab2</code> 看测试结果，但是问题是调试会比较麻烦。这里建议如果某个 case 爆了就直接使用 <code>kprintln!</code> 打印调试信息，然后使用 <code>cargo tt -c &lt;failed-case&gt; -v</code> 查看完整输出。如果需要打开 <code>debug</code> 参数查看原始代码里面给出的调试输出的信息，可以直接在 <code>tool/</code> 下面的 <code>test.rs</code> 里面修改运行参数。很容易找到需要修改的位置。</p>
+<p>总之，只要 <code>tool/</code> 下面和根目录下面有一个能跑，就不成问题。</p>
+<h2 id="6-虚拟内存的用法"><a class="markdownIt-Anchor" href="#6-虚拟内存的用法"></a> 6. 虚拟内存的用法</h2>
+<p>由于我不会 Rust 所以也暂时没完全看懂它的虚拟内存代码，这里就只给出需要的用法了：</p>
+<ul>
+<li>检查指针是否有效时，需要在页表中提取对应项，并使用 <code>is_valid</code> 查看是否有效，如下所示。</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">check_valid_va_ptr</span>(ptr: <span class="type">usize</span>) <span class="punctuation">-&gt;</span> <span class="type">bool</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">current</span> = thread::<span class="title function_ invoke__">current</span>();</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> <span class="variable">Some</span>(pt) = &amp;current.pagetable &#123;</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> <span class="variable">Some</span>(entry) = pt.<span class="title function_ invoke__">lock</span>().<span class="title function_ invoke__">get_pte</span>(ptr) &#123;</span><br><span class="line">            entry.<span class="title function_ invoke__">is_valid</span>()</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>真正使用指针时，<strong>不需要进行任何翻译</strong>。例如在 <code>read</code> 中向用户提供的 buffer 中写入数据可以这么写：</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">buf_slice</span> = <span class="keyword">unsafe</span> &#123; core::slice::<span class="title function_ invoke__">from_raw_parts_mut</span>(buffer, size) &#125;;</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">match</span> file.<span class="number">0</span>.<span class="title function_ invoke__">read</span>(buf_slice) &#123;</span><br><span class="line">    <span class="title function_ invoke__">Ok</span>(n) =&gt; n <span class="keyword">as</span> <span class="type">isize</span>,</span><br><span class="line">    <span class="title function_ invoke__">Err</span>(_) =&gt; -<span class="number">1</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>对于 Lab2，我们暂时不需要其他更复杂的用法。</p>
+<h2 id="7-参数调用"><a class="markdownIt-Anchor" href="#7-参数调用"></a> 7. 参数调用</h2>
+<p>熟悉虚拟内存的用法之后就很简单。所有的参数都需要加载到用户栈上，包括 argv 的所有字符串，以及指向这些字符串的指针。当然由于 argv 的类型是 <code>char**</code>，所以指向字符串的指针所处的位置必须是连续的，并且从低地址到高地址依次指向 <code>argv[0]</code>、<code>argv[1]</code>，以此类推，如下所示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">↑ High address (stack bottom)</span><br><span class="line">┌─────────────────┐</span><br><span class="line">│  argv[0] str    │ &quot;cp&quot;</span><br><span class="line">│  ended by &#x27;\0&#x27;  │</span><br><span class="line">├─────────────────┤</span><br><span class="line">│  argv[1] str    │ &quot;input.txt&quot;</span><br><span class="line">│  ended by &#x27;\0&#x27;  │</span><br><span class="line">├─────────────────┤</span><br><span class="line">│  ...            │</span><br><span class="line">├─────────────────┤</span><br><span class="line">│  NULL (0)       │ ← end of argv array</span><br><span class="line">├─────────────────┤</span><br><span class="line">│  argv[n] addr.  │</span><br><span class="line">│  ...            │</span><br><span class="line">│  argv[1] addr.  │</span><br><span class="line">│  argv[0] addr.  │ ← argv point here</span><br><span class="line">└─────────────────┘</span><br><span class="line">(stack top here)</span><br></pre></td></tr></table></figure>
+<p>注意所有指针都要 8 字节对齐。最后根据 calling convention，<code>argc</code> 和 <code>argv</code> 指针要放到寄存器中。注意到 <code>execute</code> 函数中本来就有设置寄存器的代码（设置的是 <code>x[2]</code> 即栈指针），仿照其写即可。需要将 <code>x[10]</code> 设为 <code>argc</code> 并将 <code>x[11]</code> 设置为 <code>argv</code>。</p>
+<h2 id="8-进程相关系统调用"><a class="markdownIt-Anchor" href="#8-进程相关系统调用"></a> 8. 进程相关系统调用</h2>
+<p>由于 TacOS 没有要求我们做进程内多线程，我们可以巨大偷懒，直接把进程当作线程的一个属性。后面我可能会混用进程/线程，可以认为进程指的就是拥有该进程的线程。</p>
+<p>首先我们直接令进程编号等于线程编号，这样我们不需要额外维护任何编号信息。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://soly5tic.github.io/2026/04/16/tacos-notes-lab2/" data-id="cms5n3enm0029w0u2fnij7ij2" data-title="PKU 操作系统 TacOS Lab2 踩坑记录" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+        <a href="/2026/04/16/tacos-notes-lab2/#comments" class="article-comment-link">
+          <span class="post-comments-count valine-comment-count fa fa-comment" data-xid="/2026/04/16/tacos-notes-lab2/" itemprop="commentCount"></span>
+          Comments
+        </a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2026/07/29/magia-quattro-piano/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Magia [quattro] 钢琴改编
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2026/03/18/tacos-notes-lab1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">PKU 操作系统 TacOS Lab1 踩坑记录</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+  <section id="comments" class="vcomment">
+
+  </section>
+</section>
+        
+          <aside id="sidebar">
+  
+      <div class="widget-wrap">
+    <h3 class="widget-title">Friends</h3>
+    <div class="widget">
+      <ul>
+        <li>
+          <a target="_blank" rel="noopener" href="https://www.blog-e.top/">Blog-E</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%80%BB%E7%BB%93/" rel="tag">总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B4%E6%B4%BB/" rel="tag">整活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%82%E8%B0%88/" rel="tag">杂谈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%B8%E8%AE%B0/" rel="tag">游记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/%E6%80%BB%E7%BB%93/" style="font-size: 13.33px;">总结</a> <a href="/tags/%E6%95%B4%E6%B4%BB/" style="font-size: 16.67px;">整活</a> <a href="/tags/%E6%9D%82%E8%B0%88/" style="font-size: 10px;">杂谈</a> <a href="/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 20px;">游记</a> <a href="/tags/%E9%A2%98%E8%A7%A3/" style="font-size: 20px;">题解</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/07/">July 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/04/">April 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/03/">March 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/02/">February 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/01/">January 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/11/">November 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/01/">January 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">November 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/10/">October 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/07/29/magia-quattro-piano/">Magia [quattro] 钢琴改编</a>
+          </li>
+        
+          <li>
+            <a href="/2026/04/16/tacos-notes-lab2/">PKU 操作系统 TacOS Lab2 踩坑记录</a>
+          </li>
+        
+          <li>
+            <a href="/2026/03/18/tacos-notes-lab1/">PKU 操作系统 TacOS Lab1 踩坑记录</a>
+          </li>
+        
+          <li>
+            <a href="/2026/02/04/connect-remote-wsl/">将 VSCode 连接到远程主机上的 WSL</a>
+          </li>
+        
+          <li>
+            <a href="/2026/02/01/buy-or-creds-with-crypto/">使用加密货币购买 OpenRouter credit 踩坑记录</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    <div class="widget-wrap">
+    <h3 class="widget-title">Page Views</h3>
+          <img src="https://badges.toozhao.com/badges/01HN5MV9JDS57RZF30YTKM0DVY/green.svg" alt="Page Views Count">
+  </div>
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2026 Sol 1<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js"></script>
+
+<script>
+    var GUEST_INFO = ['nick','mail','link'];
+    var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+        return GUEST_INFO.indexOf(item) > -1
+    });
+    var notify = 'false' == true;
+    var verify = 'false' == true;
+    new Valine({
+        el: '.vcomment',
+        notify: notify,
+        verify: verify,
+        appId: "eCOqy671NBhdnqpII5jCnb9f-gzGzoHsz",
+        appKey: "OWLPWcS3Bjm5x1YJG144u61I",
+        placeholder: "Just go go",
+        pageSize:'10',
+        avatar:'mm',
+        lang:'zh-cn'
+    });
+</script>
+
+  </div>
+</body>
+</html>
